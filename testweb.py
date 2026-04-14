@@ -16,21 +16,61 @@ def home():
 
     return f"""
     <html>
-<head>
-<meta http-equiv="refresh" content="1">
-</head>
-<body>
-<h1>🌍 World Time Dashboard</h1>
-<p><b>🇮🇳 India:</b> {india_time}</p>
-<p><b>🇺🇸 USA (New York):</b> {usa_time}</p>
-<p><b>🇨🇳 China:</b> {china_time}</p>
-</body>
-</html>
-"""
+    <head>
+        <meta http-equiv="refresh" content="1">
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                background-color: #0f172a;
+                color: white;
+                text-align: center;
+            }}
+            .card {{
+                background: #1e293b;
+                padding: 20px;
+                margin: 15px auto;
+                width: 300px;
+                border-radius: 12px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            }}
+            img {{
+                width: 40px;
+                vertical-align: middle;
+                margin-right: 10px;
+            }}
+        </style>
+    </head>
 
+    <body>
+        <h1>🌍 World Time Dashboard</h1>
+
+        <div class="card">
+            <p>
+                <img src="https://flagcdn.com/w40/in.png">
+                <b>India:</b> {india_time}
+            </p>
+        </div>
+
+        <div class="card">
+            <p>
+                <img src="https://flagcdn.com/w40/us.png">
+                <b>USA (New York):</b> {usa_time}
+            </p>
+        </div>
+
+        <div class="card">
+            <p>
+                <img src="https://flagcdn.com/w40/cn.png">
+                <b>China:</b> {china_time}
+            </p>
+        </div>
+
+    </body>
+    </html>
+    """
 @app.route('/health')
 def health():
-    return {"status": "OK"}
+  return {"status": "OK"}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
