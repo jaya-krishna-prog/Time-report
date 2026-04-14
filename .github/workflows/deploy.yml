@@ -3,32 +3,26 @@ name: Deploy Flask App to EC2
 on:
   push:
     branches:
-      - master
+      - main   # change if needed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.EC2_IP }} >> ~/.ssh/known_hosts
-
       - name: Deploy to EC2
-        run: |
-          ssh ubuntu@${{ secrets.EC2_IP }} << 'EOF'
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_IP }}
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          script: |
             cd ${{ secrets.APP_DIR }}
 
-            docker rm -f flask-app || true
-            docker ps -aq | xargs -r docker rm -f
-            docker system prune -af
+            git pull origin main
+
+            docker rm -f flask-container || true
 
             docker build -t flask-app .
-            docker run -d -p 8000:8000 --name flask-app flask-app
-          EOF
+
+            docker run -d -p 8001:8000 --restart unless-stopped --name flask-container flask-app
