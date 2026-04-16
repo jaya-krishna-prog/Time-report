@@ -13,9 +13,6 @@ def home():
     india_time = get_time("Asia/Kolkata")
     usa_time = get_time("America/New_York")
     china_time = get_time("Asia/Shanghai")
-    europe_time = get_time("Europe/Paris")
-    russia_time = get_time("Europe/Moscow")
-    japan_time = get_time("Asia/Tokyo")
 
     return f"""
     <html>
@@ -48,27 +45,24 @@ def home():
         <h1>🌍 World Time Dashboard</h1>
 
         <div class="card">
-            <p><img src="https://flagcdn.com/w40/in.png"><b>India:</b> {india_time}</p>
+            <p>
+                <img src="https://flagcdn.com/w40/in.png">
+                <b>India:</b> {india_time}
+            </p>
         </div>
 
         <div class="card">
-            <p><img src="https://flagcdn.com/w40/us.png"><b>USA (New York):</b> {usa_time}</p>
+            <p>
+                <img src="https://flagcdn.com/w40/us.png">
+                <b>USA (New York):</b> {usa_time}
+            </p>
         </div>
 
         <div class="card">
-            <p><img src="https://flagcdn.com/w40/cn.png"><b>China:</b> {china_time}</p>
-        </div>
-
-        <div class="card">
-            <p><img src="https://flagcdn.com/w40/eu.png"><b>Europe (Paris):</b> {europe_time}</p>
-        </div>
-
-        <div class="card">
-            <p><img src="https://flagcdn.com/w40/ru.png"><b>Russia (Moscow):</b> {russia_time}</p>
-        </div>
-
-        <div class="card">
-            <p><img src="https://flagcdn.com/w40/jp.png"><b>Japan (Tokyo):</b> {japan_time}</p>
+            <p>
+                <img src="https://flagcdn.com/w40/cn.png">
+                <b>China:</b> {china_time}
+            </p>
         </div>
 
     </body>
