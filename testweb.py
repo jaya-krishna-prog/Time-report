@@ -1,11 +1,10 @@
 from flask import Flask
 from datetime import datetime
-import zoneinfo
-
-app = Flask(__name__)
+import pytz
 
 def get_time(timezone):
-    now = datetime.now(zoneinfo.ZoneInfo(timezone))
+    tz = pytz.timezone(timezone)
+    now = datetime.now(tz)
     return now.strftime("%H:%M:%S | %d/%m/%y")
 
 @app.route('/')
