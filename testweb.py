@@ -22,26 +22,44 @@ def home():
     <head>
         <meta http-equiv="refresh" content="1">
         <style>
-            body {{
-                font-family: Arial, sans-serif;
-                background-color: #0f172a;
-                color: white;
-                text-align: center;
-            }}
-            .card {{
-                background: #1e293b;
-                padding: 20px;
-                margin: 15px auto;
-                width: 300px;
-                border-radius: 12px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            }}
-            img {{
-                width: 40px;
-                vertical-align: middle;
-                margin-right: 10px;
-            }}
-        </style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0f172a;
+        color: white;
+        text-align: center;
+    }
+
+    .card {
+        background: #1e293b;
+        padding: 20px;
+        margin: 15px auto;
+        width: 300px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+        /* 👇 Smooth animation */
+        transition: all 0.3s ease;
+    }
+
+    /* 🔥 POP EFFECT */
+    .card:hover {
+        transform: scale(1.08); /* zoom */
+        box-shadow: 0 0 25px rgba(59,130,246,0.7); /* glow */
+        cursor: pointer;
+    }
+
+    img {
+        width: 40px;
+        vertical-align: middle;
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Optional: flag also pops slightly */
+    .card:hover img {
+        transform: scale(1.2);
+    }
+</style>
     </head>
 
     <body>
